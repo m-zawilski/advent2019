@@ -1,0 +1,32 @@
+{
+  "name": "advent2019",
+  "version": "1.0.0",
+  "description": "Advent Of Code 2019",
+  "main": "readFile.js",
+  "dependencies": {
+    "file-system": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "start": "node src/start.js",
+    "build-and-run": "npm run build && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-zawilski/advent2019.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-zawilski/advent2019/issues"
+  },
+  "homepage": "https://github.com/m-zawilski/advent2019#readme"
+}
