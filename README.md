@@ -1,3 +1,5 @@
-Advent Of Code 2019
+<b> Advent Of Code 2019 </b>
 
-Using TypeScript
+In this year my goal during AoC is to get comfortable using TypeScript and Test-Driven Development. 
+
+Status: 8/50 🌟
