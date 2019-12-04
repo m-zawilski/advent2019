@@ -1,8 +1,8 @@
 import readFile from '../common/readFile';
 import { isString } from 'util';
 
-const questionX = async () => {
-  readFile(X).then(data => {
+const question4 = async () => {
+  readFile(4).then(data => {
     if (isString(data)) {
       getFirstAnswer(data);
       getSecondAnswer(data);
@@ -24,5 +24,5 @@ const getSecondAnswer = (data: string) => {
 }
 
 export {
-  questionX
+  question4
 }
