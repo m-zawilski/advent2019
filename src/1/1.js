@@ -25,14 +25,14 @@ const getFirstAnswer = (data) => {
         .map(m => getFuel(m));
     ;
     const totalFuel = getTotalFuel(fuels);
-    console.log("1) Total fuel: " + totalFuel);
+    console.log(`1) Total fuel: ${totalFuel}`);
 };
 const getSecondAnswer = (data) => {
     const fuels = getMassAray(data)
         .map(m => getFuelRecursive(m));
     ;
     const totalFuel = getTotalFuel(fuels);
-    console.log("2) Total fuel: " + totalFuel);
+    console.log(`2) Total fuel: ${totalFuel}`);
 };
 const getTotalFuel = (fuels) => {
     return fuels.reduce((sum, f) => {
