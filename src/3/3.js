@@ -45,23 +45,24 @@ const findMinCableLength = (firstCable, secondCable, intersections) => {
 exports.findMinCableLength = findMinCableLength;
 const getLength = (cable1, cable2, intersection) => {
     let length = 0;
-    for (let i = 0; i < intersection.intersectionMetadata.firstCable; i++) {
+    const { firstCableLineNumber, secondCableLineNumber } = intersection.intersectionMetadata;
+    for (let i = 0; i < firstCableLineNumber; i++) {
         length += Math.abs(cable1.lines[i].end - cable1.lines[i].start);
     }
-    for (let i = 0; i < intersection.intersectionMetadata.secondCable; i++) {
+    for (let i = 0; i < secondCableLineNumber; i++) {
         length += Math.abs(cable2.lines[i].end - cable2.lines[i].start);
     }
-    if (cable1.lines[intersection.intersectionMetadata.firstCable].horizontal) {
-        length += Math.abs(cable1.lines[intersection.intersectionMetadata.firstCable].start - intersection.x);
+    if (cable1.lines[firstCableLineNumber].horizontal) {
+        length += Math.abs(cable1.lines[firstCableLineNumber].start - intersection.x);
     }
     else {
-        length += Math.abs(cable1.lines[intersection.intersectionMetadata.firstCable].start - intersection.y);
+        length += Math.abs(cable1.lines[firstCableLineNumber].start - intersection.y);
     }
-    if (cable2.lines[intersection.intersectionMetadata.secondCable].horizontal) {
-        length += Math.abs(cable2.lines[intersection.intersectionMetadata.secondCable].start - intersection.x);
+    if (cable2.lines[firstCableLineNumber].horizontal) {
+        length += Math.abs(cable2.lines[secondCableLineNumber].start - intersection.x);
     }
     else {
-        length += Math.abs(cable2.lines[intersection.intersectionMetadata.secondCable].start - intersection.y);
+        length += Math.abs(cable2.lines[secondCableLineNumber].start - intersection.y);
     }
     return length;
 };
@@ -133,8 +134,8 @@ const findIntersections = (firstCable, secondCable) => {
                     x: line2.position,
                     y: line1.position,
                     intersectionMetadata: {
-                        firstCable: i,
-                        secondCable: j
+                        firstCableLineNumber: i,
+                        secondCableLineNumber: j
                     }
                 });
             }
@@ -143,8 +144,8 @@ const findIntersections = (firstCable, secondCable) => {
                     x: line1.position,
                     y: line2.position,
                     intersectionMetadata: {
-                        firstCable: i,
-                        secondCable: j
+                        firstCableLineNumber: i,
+                        secondCableLineNumber: j
                     }
                 });
             }
