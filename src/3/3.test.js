@@ -46,12 +46,12 @@ describe('First Task test', () => {
     });
 });
 describe('Second Task test', () => {
-    // test('Cable lists of R8,U5,L5,D3 and U7,R6,D4,L4 shortest cable length is 40', () => {
-    //   const firstCable = getCable(['R8', 'U5', 'L5', 'D3']);
-    //   const secondCable = getCable(['U7', 'R6', 'D4', 'L4']);
-    //   const intersections = findIntersections(firstCable, secondCable);
-    //   expect(findMinCableLength(firstCable, secondCable, intersections)).toEqual(30);
-    // })
+    test('Cable lists of R8,U5,L5,D3 and U7,R6,D4,L4 shortest cable length is 40', () => {
+        const firstCable = _3_1.getCable(['R8', 'U5', 'L5', 'D3']);
+        const secondCable = _3_1.getCable(['U7', 'R6', 'D4', 'L4']);
+        const intersections = _3_1.findIntersections(firstCable, secondCable);
+        expect(_3_1.findMinCableLength(firstCable, secondCable, intersections)).toEqual(30);
+    });
     test('Cable lists of R75,D30,R83,U83,L12,D49,R71,U7,L72 and U62,R66,U55,R34,D71,R55,D58,R83 shortest cable length is 610', () => {
         const firstCable = _3_1.getCable(['R75', 'D30', 'R83', 'U83', 'L12', 'D49', 'R71', 'U7', 'L72']);
         const secondCable = _3_1.getCable(['U62', 'R66', 'U55', 'R34', 'D71', 'R55', 'D58', 'R83']);
