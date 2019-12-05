@@ -16,27 +16,25 @@ const question4 = async () => {
 }
 
 const getFirstAnswer = (data: string) => {
-  let [ low, high ] = data.split('-');
+  let [ low, high ] = data.split('-').map(d => parseInt(d));
   let counter = 0;
-  let [ parsedLow, parsedHigh ] = [ parseInt(low), parseInt(high) ];
-  while(parsedLow < parsedHigh){
-    if(isPassword1(parsedLow.toString().split(''))){
+  while(low < high){
+    if(isPassword1(low.toString().split(''))){
       counter++;
     }
-    parsedLow++;
+    low++;
   }
   console.log(`1) Result is: ${counter}`);
 }
 
 const getSecondAnswer = (data: string) => {
-  let [ low, high ] = data.split('-');
+  let [ low, high ] = data.split('-').map(d => parseInt(d));
   let counter = 0;
-  let [ parsedLow, parsedHigh ] = [ parseInt(low), parseInt(high) ];
-  while(parsedLow < parsedHigh){
-    if(isPassword2(parsedLow.toString().split(''))){
+  while(low < high){
+    if(isPassword2(low.toString().split(''))){
       counter++;
     }
-    parsedLow++;
+    low++;
   }
   console.log(`1) Result is: ${counter}`);
 }
