@@ -2,4 +2,4 @@
 
 In this year my goal during AoC is to get comfortable using TypeScript and Test-Driven Development. 
 
-Status: 8/50 🌟
+Status: 10/50 🌟
