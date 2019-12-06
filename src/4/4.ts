@@ -7,7 +7,7 @@ const question4 = async () => {
       getFirstAnswer(data);
       getSecondAnswer(data);
     } else {
-      throw "Wrong data type";
+      throw 'Wrong data type';
     }
   })
   .catch(err => {
