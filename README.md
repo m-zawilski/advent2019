@@ -2,4 +2,6 @@
 
 In this year my goal during AoC is to get comfortable using TypeScript and Test-Driven Development. 
 
-Status: 12/50 🌟
+See all tasks here: https://adventofcode.com/2019
+
+Status: 15/50 🌟
