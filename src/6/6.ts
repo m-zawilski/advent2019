@@ -21,14 +21,14 @@ const question6 = async () => {
 }
 
 const getFirstAnswer = (data: string) => {
-  console.log(`1) First answer: ${getOrbitSum(data)}`);
+  const planets: Planet[] = createPlanets(data);
+  console.log(`1) First answer: ${getOrbitSum(planets)}`);
 }
 
 const getSecondAnswer = (data: string) => {
   const planets: Planet[] = createPlanets(data);
   const closestCommonParent: Planet = findClosestCommonParent(planets, 'YOU', 'SAN');
-  const sum = getTransfersSum(planets, closestCommonParent, 'YOU', 'SAN');
-  console.log(sum);
+  console.log(`2) Second answer: ${getTransfersSum(planets, closestCommonParent, 'YOU', 'SAN')}`);
 }
 
 const getTransfersSum = ( planets: Planet[], closestCommonParent: Planet, s1: string, s2: string ): number => {
@@ -54,8 +54,10 @@ const findClosestCommonParent = ( planets: Planet[], s1: string, s2: string ): P
   return found;
 }
 
-const getOrbitSum = ( data: string ) => {
-  return calculateChainLength(createPlanets(data));
+const getOrbitSum = ( planets: Planet[] ): number => {
+  return planets.reduce((acc, planet) => {
+    return acc + planet.orbitChain.length;
+  }, 0)
 }
 
 const createPlanets = ( data: string ): Planet[] => {
@@ -65,12 +67,6 @@ const createPlanets = ( data: string ): Planet[] => {
     planets = updatePlanets(orbitCode, planets);
   }
   return planets;
-}
-
-const calculateChainLength = ( planets: Planet[] ): number => {
-  return planets.reduce((acc, planet) => {
-    return acc + planet.orbitChain.length;
-  }, 0)
 }
 
 const updatePlanets = ( orbitCode: string, planets: Planet[] ): Planet[] => {
@@ -164,7 +160,6 @@ export {
   putNewPlanetIfInChain,
   Planet,
   isPlanetInArray,
-  calculateChainLength,
   getOrbitSum,
   findClosestCommonParent, 
   createPlanets,

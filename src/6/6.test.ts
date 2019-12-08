@@ -2,7 +2,6 @@ import {  updatePlanets,
           putNewPlanetIfInChain, 
           Planet, 
           isPlanetInArray, 
-          calculateChainLength, 
           getOrbitSum,
           createPlanets,
           findClosestCommonParent,
@@ -113,12 +112,13 @@ describe('First task tests', () => {
       {name: 'D', orbitChain: ['A', 'E']},
       {name: 'A', orbitChain: ['E']},
     ];
-    expect(calculateChainLength(planets)).toBe(4);
+    expect(getOrbitSum(planets)).toBe(4);
   })
 
   test('GetFirstAnswer gives correct answer for example as in task description', () => {
     const data = 'COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L';
-    expect(getOrbitSum(data)).toBe(42);
+    const planets = createPlanets(data);
+    expect(getOrbitSum(planets)).toBe(42);
   })
 })
 

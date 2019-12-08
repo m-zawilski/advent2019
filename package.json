@@ -4,7 +4,9 @@
   "description": "Advent Of Code 2019",
   "main": "readFile.js",
   "dependencies": {
-    "file-system": "^2.2.2"
+    "@types/js-combinatorics": "^0.5.31",
+    "file-system": "^2.2.2",
+    "js-combinatorics": "^0.5.4"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

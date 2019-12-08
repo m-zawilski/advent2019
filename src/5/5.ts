@@ -31,40 +31,79 @@ const getSecondAnswer = (dataString: string) => {
   console.log('===============================')
 }
 
-const runAllSteps = (data: number[], taskInput: number): number[] => {
+const runAllSteps = ( 
+    data: number[], 
+    phase: number, 
+    previousOutput: number = 0 
+  ): { data: number[], output: number } => {
   let dataCopy = [...data];
   let it = 0;
+  let output = 0;
+  let input = phase;
   while(it < dataCopy.length){
-    let { dataCopy, i } = calculateStep(data, it, taskInput);
+    const instruction = getInstruction(data[it]);
+    let { dataCopy, i, output: out } = calculateStep(instruction, data, it, input, output);
+    if(instruction === 3){
+      input = previousOutput;
+    }
     data = dataCopy;
     it = i;
+    output = out;
   }
-  return dataCopy;
+  return { data: dataCopy, output };
 }
 
-const calculateStep = (data: number[], it: number, taskInput: number ): { dataCopy: number[], i: number } => {
-  const instruction = getInstruction(data[it]);
+const calculateStep = ( 
+  instruction: number, 
+  data: number[], 
+  it: number, 
+  taskInput: number,
+  output: number ): 
+  { dataCopy: number[], i: number, output: number } => {
   switch (instruction) {
     case 1:
-      return getArrayAfterAddition(data, it);
+      return {
+        output,
+        ...getArrayAfterAddition(data, it)
+      }
     case 2:
-      return getArrayAfterMultiply(data, it);
+      return  {
+        output,
+        ...getArrayAfterMultiply(data, it)
+      }
     case 3:
-      return readInput(data, it, taskInput);
+      return {
+        output,
+        ...readInput(data, it, taskInput)
+      }
     case 4:
-      return readOutput(data, it);
+      const { dataCopy, i, output: out } = readOutput(data, it);
+      console.log(out);
+      return { dataCopy, i, output: out };
     case 5:
-      return jumpIfTrue(data, it);
+      return {
+        output,
+        ...jumpIfTrue(data, it)
+      }
     case 6:
-      return jumpIfFalse(data, it);
+      return {
+        output,
+        ...jumpIfFalse(data, it)
+      }
     case 7:
-      return lessThan(data, it);
+      return {
+        output,
+        ...lessThan(data, it)
+      }
     case 8:
-      return equals(data, it);
+      return {
+        output,
+        ...equals(data, it)
+      }
     case 99:
-      return { dataCopy: data, i: Infinity };
+      return { dataCopy: data, i: Infinity, output };
     default:
-      return { dataCopy: data, i: it };
+      return { dataCopy: data, i: it, output };
   }
 }
 
@@ -104,9 +143,9 @@ const readInput = (data: number[], it: number, value: number): { dataCopy: numbe
   return { dataCopy, i: it + 2 };
 }
 
-const readOutput = (data: number[], it: number): { dataCopy: number[], i: number } => {
-  console.log(data[data[it+1]]);
-  return { dataCopy: data, i: it + 2 };
+const readOutput = (data: number[], it: number): { dataCopy: number[], i: number, output: number } => {
+  const output = data[data[it+1]];
+  return { dataCopy: data, i: it + 2, output };
 }
 
 const getInstruction = (optCode: number): number => {
@@ -156,5 +195,6 @@ export {
   jumpIfFalse,
   lessThan,
   equals,
+  runAllSteps,
   question5
 }
